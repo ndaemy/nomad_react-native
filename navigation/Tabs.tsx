@@ -8,7 +8,8 @@ import Favs from '../screens/Favs'
 
 const Tabs = createBottomTabNavigator()
 
-export default function MyTabs() {
+export default function MyTabs({ navigation }: any) {
+  navigation.setOptions({ title: 'Hello from the Tabs' })
   return (
     <Tabs.Navigator>
       <Tabs.Screen name='Movies' component={Movies} />
