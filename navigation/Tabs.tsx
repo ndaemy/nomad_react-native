@@ -29,6 +29,7 @@ const getHeaderName = (route: RouteProp<TabParamList, 'Movies'>) =>
 
 export default function MyTabs({ navigation, route }: Props) {
   useLayoutEffect(() => {
+    const name = getHeaderName(route)
     navigation.setOptions({
       title: getHeaderName(route),
     })
