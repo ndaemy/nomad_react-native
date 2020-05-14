@@ -1,9 +1,11 @@
 import React, { useLayoutEffect } from 'react'
+import { Platform } from 'react-native'
 import {
   createBottomTabNavigator,
   BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs'
 import { RouteProp } from '@react-navigation/native'
+import { Ionicons } from '@expo/vector-icons'
 
 import Movies from '../screens/Movies'
 import TV from '../screens/TV'
@@ -35,7 +37,31 @@ export default function MyTabs({ navigation, route }: Props) {
     })
   }, [route])
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => {
+          let iconName = Platform.OS === 'ios' ? 'ios-' : 'md-'
+          if (route.name === 'Movies') iconName += 'film'
+          else if (route.name === 'TV') iconName += 'tv'
+          else if (route.name === 'Search') iconName += 'search'
+          else if (route.name === 'Favorites') iconName += 'heart'
+          return (
+            <Ionicons
+              name={iconName}
+              color={focused ? 'white' : 'grey'}
+              size={26}
+            />
+          )
+        },
+      })}
+      tabBarOptions={{
+        showLabel: false,
+        style: {
+          backgroundColor: 'black',
+          borderTopColor: 'black',
+        },
+      }}
+    >
       <Tabs.Screen name='Movies' component={Movies} />
       <Tabs.Screen name='TV' component={TV} />
       <Tabs.Screen name='Search' component={Search} />
