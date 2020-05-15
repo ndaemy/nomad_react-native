@@ -10,13 +10,24 @@ const makeRequest = (path: string, params?: object) =>
     },
   })
 
+async function getAnything(path: string, params?: object) {
+  try {
+    const {
+      data: { results },
+    } = await makeRequest(path, params)
+    return [results, null]
+  } catch (e) {
+    return [null, e]
+  }
+}
+
 export const movieApi = {
-  nowPlaying: () => makeRequest('/movie/now_playing'),
-  popular: () => makeRequest('/movie/popular'),
-  upcoming: () => makeRequest('/movie/upcoming', { region: 'kr' }),
-  search: (query: string) => makeRequest('/search/movie', { query }),
-  detail: (id: string | number) => makeRequest(`/movie/${id}`),
-  discover: () => makeRequest('/discover/movie'),
+  nowPlaying: () => getAnything('/movie/now_playing'),
+  popular: () => getAnything('/movie/popular'),
+  upcoming: () => getAnything('/movie/upcoming', { region: 'kr' }),
+  search: (query: string) => getAnything('/search/movie', { query }),
+  detail: (id: string | number) => getAnything(`/movie/${id}`),
+  discover: () => getAnything('/discover/movie'),
 }
 
 export const tvApi = {
