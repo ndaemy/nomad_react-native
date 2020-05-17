@@ -32,10 +32,10 @@ export const movieApi = {
 }
 
 export const tvApi = {
-  today: () => makeRequest('/tv/airing_today'),
-  thisWeek: () => makeRequest('/tv/on_the_air'),
-  topRated: () => makeRequest('/tv/top_rated'),
-  popular: () => makeRequest('/tv/popular'),
-  search: (query: string) => makeRequest('/search/tv', { query }),
-  detail: (id: string | number) => makeRequest(`/tv/${id}`),
+  today: () => getAnything('/tv/airing_today'),
+  thisWeek: () => getAnything('/tv/on_the_air'),
+  topRated: () => getAnything('/tv/top_rated'),
+  popular: () => getAnything('/tv/popular'),
+  search: (query: string) => getAnything('/search/tv', { query }),
+  detail: (id: string | number) => getAnything(`/tv/${id}`),
 }

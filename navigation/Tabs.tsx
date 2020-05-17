@@ -16,7 +16,7 @@ type TabParamList = {
   Movies: undefined
   TV: undefined
   Search: undefined
-  Favorites: undefined
+  Discovery: undefined
 }
 
 type Props = {
@@ -44,7 +44,7 @@ export default function MyTabs({ navigation, route }: Props) {
           if (route.name === 'Movies') iconName += 'film'
           else if (route.name === 'TV') iconName += 'tv'
           else if (route.name === 'Search') iconName += 'search'
-          else if (route.name === 'Favorites') iconName += 'heart'
+          else if (route.name === 'Discovery') iconName += 'heart'
           return (
             <Ionicons
               name={iconName}
@@ -65,7 +65,7 @@ export default function MyTabs({ navigation, route }: Props) {
       <Tabs.Screen name='Movies' component={Movies} />
       <Tabs.Screen name='TV' component={TV} />
       <Tabs.Screen name='Search' component={Search} />
-      <Tabs.Screen name='Favorites' component={Favs} />
+      <Tabs.Screen name='Discovery' component={Favs} />
     </Tabs.Navigator>
   )
 }
