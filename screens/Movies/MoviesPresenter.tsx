@@ -1,9 +1,8 @@
 import React from 'react'
-import { Dimensions, ActivityIndicator } from 'react-native'
+import { ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
 import Swiper from 'react-native-web-swiper'
-
-const { width, height } = Dimensions.get('screen')
+import Slide from '../../components/Movies/Slide'
 
 const Container = styled.View`
   flex: 1;
@@ -11,19 +10,7 @@ const Container = styled.View`
   justify-content: center;
 `
 
-const Header = styled.View`
-  width: 100%;
-  height: ${height / 3}px;
-`
-
-const Section = styled.View`
-  background-color: red;
-  height: 100%;
-`
-
-const Text = styled.Text``
-
-type IProps = {
+interface Props {
   loading: boolean
   nowPlaying: Array<any>
   popular: Array<any>
@@ -33,21 +20,26 @@ type IProps = {
   upcomingError: string | null
 }
 
-export default function MoviesPresenter(props: IProps) {
+export default function MoviesPresenter(props: Props) {
   return (
     <Container>
       {props.loading ? (
         <ActivityIndicator color='white' size='small' />
       ) : (
-        <Header>
+        <>
           <Swiper controlsEnabled={false} loop timeout={3}>
             {props.nowPlaying.map(movie => (
-              <Section key={movie.id}>
-                <Text>{movie.original_title}</Text>
-              </Section>
+              <Slide
+                key={movie.id}
+                id={movie.id}
+                title={movie.original_language}
+                overview={movie.overview}
+                votes={movie.vote_average}
+                backgroundImage={movie.backdrop_path}
+              />
             ))}
           </Swiper>
-        </Header>
+        </>
       )}
     </Container>
   )
