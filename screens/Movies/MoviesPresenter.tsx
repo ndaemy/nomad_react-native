@@ -42,6 +42,7 @@ export default function MoviesPresenter(props: Props) {
                 title={movie.original_title}
                 overview={movie.overview}
                 votes={movie.vote_average}
+                poster={movie.poster_path}
                 backgroundImage={movie.backdrop_path}
               />
             ))}
