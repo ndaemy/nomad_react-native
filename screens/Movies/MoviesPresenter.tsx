@@ -1,10 +1,11 @@
 import React from 'react'
-import { ActivityIndicator, Dimensions } from 'react-native'
+import { ActivityIndicator, Dimensions, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import Swiper from 'react-native-web-swiper'
 import Slide from '../../components/Movies/Slide'
+import Title from '../../components/Movies/Title'
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get('screen')
+const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
 const Container = styled.View`
   flex: 1;
@@ -15,6 +16,7 @@ const Container = styled.View`
 const SliderContainer = styled.View`
   width: ${WIDTH}px;
   height: ${HEIGHT / 4}px;
+  margin-bottom: 50px;
 `
 
 interface Props {
@@ -28,26 +30,43 @@ interface Props {
 }
 
 export default function MoviesPresenter(props: Props) {
+  const {
+    loading,
+    nowPlaying,
+    popular,
+    upcoming,
+    nowPlayingError,
+    popularError,
+    upcomingError,
+  } = props
+
   return (
     <Container>
-      {props.loading ? (
+      {loading ? (
         <ActivityIndicator color='white' size='small' />
       ) : (
-        <SliderContainer>
-          <Swiper controlsEnabled={false} loop timeout={3}>
-            {props.nowPlaying.map(movie => (
-              <Slide
-                key={movie.id}
-                id={movie.id}
-                title={movie.original_title}
-                overview={movie.overview}
-                votes={movie.vote_average}
-                poster={movie.poster_path}
-                backgroundImage={movie.backdrop_path}
-              />
-            ))}
-          </Swiper>
-        </SliderContainer>
+        <ScrollView
+          contentContainerStyle={{
+            justifyContent: loading ? 'center' : 'flex-start',
+          }}
+        >
+          <SliderContainer>
+            <Swiper controlsEnabled={false} loop timeout={3}>
+              {nowPlaying.map(movie => (
+                <Slide
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  overview={movie.overview}
+                  votes={movie.vote_average}
+                  poster={movie.poster_path}
+                  backgroundImage={movie.backdrop_path}
+                />
+              ))}
+            </Swiper>
+          </SliderContainer>
+          <Title title={'Popular Movies'} />
+        </ScrollView>
       )}
     </Container>
   )
