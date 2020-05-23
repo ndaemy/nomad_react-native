@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import Swiper from 'react-native-web-swiper'
 import Slide from '../../components/Movies/Slide'
 import Title from '../../components/Movies/Title'
+import Vertical from '../../components/Vertical'
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
@@ -65,7 +66,19 @@ export default function MoviesPresenter(props: Props) {
               ))}
             </Swiper>
           </SliderContainer>
-          <Title title={'Popular Movies'} />
+          <Container>
+            <Title title={'Popular Movies'} />
+            <ScrollView horizontal>
+              {popular.map(movie => (
+                <Vertical
+                  key={movie.id}
+                  poster={movie.poster_path}
+                  title={movie.original_title}
+                  votes={movie.vote_average}
+                />
+              ))}
+            </ScrollView>
+          </Container>
         </ScrollView>
       )}
     </Container>
