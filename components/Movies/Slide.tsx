@@ -3,6 +3,8 @@ import styled from 'styled-components/native'
 import { apiImage } from '../../api'
 import Poster from '../Poster'
 import Votes from '../Votes'
+import { trimText } from '../../utils'
+import { TouchableOpacity } from 'react-native'
 
 const Container = styled.View`
   width: 100%;
@@ -72,18 +74,18 @@ export default function Slide(props: Props) {
     <Container>
       <BG source={{ uri: apiImage(backgroundImage) }} />
       <Content>
-        <Poster url={apiImage(poster)} />
+        <Poster url={poster} />
         <Data>
-          <Title>
-            {title.length > 40 ? `${title.slice(0, 40)}...` : title}
-          </Title>
+          <Title>{trimText(title, 30)}</Title>
           <VotesContainer>
             <Votes votes={votes} />
           </VotesContainer>
-          <Overview>{overview.slice(0, 110)}...</Overview>
-          <Button>
-            <ButtonText>View Details</ButtonText>
-          </Button>
+          <Overview>{trimText(overview, 110)}</Overview>
+          <TouchableOpacity>
+            <Button>
+              <ButtonText>View Details</ButtonText>
+            </Button>
+          </TouchableOpacity>
         </Data>
       </Content>
     </Container>

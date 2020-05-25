@@ -9,12 +9,16 @@ import Horizontal from '../../components/Horizontal'
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
-const Container = styled.View``
-
 const SliderContainer = styled.View`
   width: 100%;
   height: ${HEIGHT / 4}px;
   margin-bottom: 40px;
+`
+
+const Container = styled.View``
+
+const UpcomingContainer = styled.View`
+  margin-top: 20px;
 `
 
 interface Props {
@@ -85,16 +89,18 @@ export default function MoviesPresenter(props: Props) {
               ))}
             </ScrollView>
             <Title title={'Coming Soon'} />
-            {upcoming.map(movie => (
-              <Horizontal
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                votes={movie.vote_average}
-                poster={movie.poster_path}
-                overview={movie.overview}
-              />
-            ))}
+            <UpcomingContainer>
+              {upcoming.map(movie => (
+                <Horizontal
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  releaseDate={movie.release_date}
+                  poster={movie.poster_path}
+                  overview={movie.overview}
+                />
+              ))}
+            </UpcomingContainer>
           </Container>
         </>
       )}

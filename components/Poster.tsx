@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
+import { apiImage } from '../api'
 
 const Image = styled.Image`
   width: 100px;
@@ -12,5 +13,5 @@ interface Props {
 }
 
 export default function Poster({ url }: Props) {
-  return <Image source={{ uri: url }} />
+  return <Image source={{ uri: apiImage(url) }} />
 }
