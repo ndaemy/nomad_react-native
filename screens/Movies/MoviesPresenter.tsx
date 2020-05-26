@@ -48,6 +48,7 @@ export default function MoviesPresenter(props: Props) {
         backgroundColor: 'black',
       }}
       contentContainerStyle={{
+        flex: loading ? 1 : undefined,
         justifyContent: loading ? 'center' : 'flex-start',
       }}
     >
