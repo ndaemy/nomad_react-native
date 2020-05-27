@@ -3,7 +3,7 @@ import { ScrollView, ActivityIndicator } from 'react-native'
 
 interface Props {
   loading: boolean
-  children: React.ReactChild
+  children: React.ReactChild[]
 }
 
 export default function ScrollContainer({ loading, children }: Props) {
