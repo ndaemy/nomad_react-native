@@ -1,13 +1,13 @@
 import React from 'react'
-import { ActivityIndicator, Dimensions, ScrollView } from 'react-native'
+import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 import Swiper from 'react-native-web-swiper'
 import Slide from '../../components/Movies/Slide'
-import Title from '../../components/Movies/Title'
 import Vertical from '../../components/Vertical'
 import Horizontal from '../../components/Horizontal'
 import ScrollContainer from '../../components/ScrollContainer'
 import HorizontalSlider from '../../components/HorizontalSlider'
+import List from '../../components/List'
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
@@ -18,10 +18,6 @@ const SliderContainer = styled.View`
 `
 
 const Container = styled.View``
-
-const UpcomingContainer = styled.View`
-  margin-top: 20px;
-`
 
 interface Props {
   loading: boolean
@@ -74,8 +70,7 @@ export default function MoviesPresenter(props: Props) {
               />
             ))}
           </HorizontalSlider>
-          <Title title={'Coming Soon'} />
-          <UpcomingContainer>
+          <List title='Coming soom'>
             {upcoming.map(movie => (
               <Horizontal
                 key={movie.id}
@@ -86,7 +81,7 @@ export default function MoviesPresenter(props: Props) {
                 overview={movie.overview}
               />
             ))}
-          </UpcomingContainer>
+          </List>
         </Container>
       </>
     </ScrollContainer>
