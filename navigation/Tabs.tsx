@@ -62,8 +62,8 @@ export default function MyTabs({ navigation, route }: Props) {
         },
       }}
     >
-      <Tabs.Screen name='TV' component={TV} />
       <Tabs.Screen name='Movies' component={Movies} />
+      <Tabs.Screen name='TV' component={TV} />
       <Tabs.Screen name='Search' component={Search} />
       <Tabs.Screen name='Discovery' component={Favs} />
     </Tabs.Navigator>
