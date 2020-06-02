@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 import Input from '../../components/Search/Input'
 import HorizontalSlider from '../../components/HorizontalSlider'
-import Horizontal from '../../components/Horizontal'
+import Vertical from '../../components/Vertical'
 
 const Container = styled.ScrollView`
   background-color: black;
@@ -27,16 +27,32 @@ export default function SearchPresenter(props: Props) {
         onChange={onChange}
         onSubmit={onSubmit}
       />
-      <HorizontalSlider title={'Movie results'}>
-        {movies.map(movie => (
-          <Horizontal />
-        ))}
-      </HorizontalSlider>
-      <HorizontalSlider title={'TV results'}>
-        {shows.map(show => (
-          <Horizontal />
-        ))}
-      </HorizontalSlider>
+      {movies.length !== 0 && (
+        <HorizontalSlider title={'Movie results'}>
+          {movies.map(movie => (
+            <Vertical
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              poster={movie.poster_path}
+              votes={movie.vote_average}
+            />
+          ))}
+        </HorizontalSlider>
+      )}
+      {shows.length !== 0 && (
+        <HorizontalSlider title={'TV results'}>
+          {shows.map(show => (
+            <Vertical
+              key={show.id}
+              id={show.id}
+              votes={show.vote_average}
+              title={show.name}
+              poster={show.poster_path}
+            />
+          ))}
+        </HorizontalSlider>
+      )}
     </Container>
   )
 }
