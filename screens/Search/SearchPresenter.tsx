@@ -3,10 +3,7 @@ import styled from 'styled-components/native'
 import Input from '../../components/Search/Input'
 import HorizontalSlider from '../../components/HorizontalSlider'
 import Vertical from '../../components/Vertical'
-
-const Container = styled.ScrollView`
-  background-color: black;
-`
+import ScrollContainer from '../../components/ScrollContainer'
 
 interface Props {
   keyword: string
@@ -20,7 +17,7 @@ export default function SearchPresenter(props: Props) {
   const { keyword, movies, shows, onChange, onSubmit } = props
 
   return (
-    <Container>
+    <ScrollContainer>
       <Input
         placeholder='Write a keyword'
         value={keyword}
@@ -53,6 +50,6 @@ export default function SearchPresenter(props: Props) {
           ))}
         </HorizontalSlider>
       )}
-    </Container>
+    </ScrollContainer>
   )
 }

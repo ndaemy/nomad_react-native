@@ -22,7 +22,10 @@ export default function App() {
   const [isReady, setIsReady] = useState<boolean>(false)
 
   function loadAssets(): Promise<any> {
-    const images = cacheImages([require('./assets/splash.png')])
+    const images = cacheImages([
+      'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
+      require('./assets/splash.png'),
+    ])
     const fonts = cacheFonts([Ionicons.font])
 
     return Promise.all([...images, ...fonts])

@@ -1,14 +1,15 @@
 import React from 'react'
-import { ScrollView, ActivityIndicator } from 'react-native'
+import { ScrollView, ActivityIndicator, RefreshControl } from 'react-native'
 
 interface Props {
   loading: boolean
-  children: React.ReactChild[] | React.ReactChild
+  children: Element | null
 }
 
 export default function ScrollContainer({ loading, children }: Props) {
   return (
     <ScrollView
+      refreshControl={<RefreshControl tintColor='white' />}
       style={{ backgroundColor: 'black' }}
       contentContainerStyle={{
         flex: loading ? 1 : 0,
