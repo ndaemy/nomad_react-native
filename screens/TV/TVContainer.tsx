@@ -38,5 +38,5 @@ export default function TV() {
     getData()
   }, [])
 
-  return <TVPresenter {...shows} />
+  return <TVPresenter refreshFn={getData} {...shows} />
 }

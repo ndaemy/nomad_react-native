@@ -20,6 +20,7 @@ const SliderContainer = styled.View`
 const Container = styled.View``
 
 interface Props {
+  refreshFn: Function
   loading: boolean
   nowPlaying: Array<any>
   popular: Array<any>
@@ -31,6 +32,7 @@ interface Props {
 
 export default function MoviesPresenter(props: Props) {
   const {
+    refreshFn,
     loading,
     nowPlaying,
     popular,
@@ -41,7 +43,7 @@ export default function MoviesPresenter(props: Props) {
   } = props
 
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer refreshFn={refreshFn} loading={loading}>
       <>
         <SliderContainer>
           <Swiper controlsEnabled={false} loop timeout={3}>

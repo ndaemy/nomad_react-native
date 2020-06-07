@@ -32,5 +32,5 @@ export default function MoviesContainer() {
     getData()
   }, [])
 
-  return <MoviesPresenter {...movies} />
+  return <MoviesPresenter refreshFn={getData} {...movies} />
 }

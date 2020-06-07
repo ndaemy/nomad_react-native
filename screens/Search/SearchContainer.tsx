@@ -16,6 +16,7 @@ export default function SearchContainer({}: Props) {
   const onChange = (text: string) => setKeyword(text)
 
   const onSubmit = async () => {
+    if (keyword === '') return
     const [movies, movieError] = await movieApi.search(keyword)
     const [shows, showError] = await tvApi.search(keyword)
     setResults({
@@ -24,8 +25,6 @@ export default function SearchContainer({}: Props) {
       movieError,
       showError,
     })
-
-    console.log(results)
   }
 
   return (

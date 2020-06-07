@@ -11,6 +11,7 @@ const Container = styled.View`
 `
 
 interface Props {
+  refreshFn: Function
   loading: boolean
   popular: Array<any>
   topRated: Array<any>
@@ -18,10 +19,10 @@ interface Props {
 }
 
 export default function TVPresenter(props: Props) {
-  const { loading, popular, topRated, today } = props
+  const { refreshFn, loading, popular, topRated, today } = props
 
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer refreshFn={refreshFn} loading={loading}>
       <Container>
         <HorizontalSlider title='Popular Shows'>
           {popular.map(show => (
